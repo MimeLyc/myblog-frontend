@@ -180,8 +180,8 @@ export default {
     },
     getList() {
       this.getArticleList({
-          by: 'status',
-          status: 1,
+          by: 'STATUS',
+          status: 'DELETED',
           page: this.page,
           pageSize: this.pageSize
         })

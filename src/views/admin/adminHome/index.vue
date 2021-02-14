@@ -121,8 +121,8 @@ export default {
       .catch(()=> {})
     this.getLog(0)
     this.getArticleList({
-        by: 'status',
-        status: '0',
+        by: 'STATUS',
+        status: 'PUBLISHED',
         page: 0,
         pageSize: 10
       })

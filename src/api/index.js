@@ -24,7 +24,7 @@ axios.defaults.headers.Accept = 'application/json'
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
-  if (config.url.indexOf('a/') === 0) {
+  if (config.url.indexOf('admin/') === 0) {
     if (getAccessToken()) {
       config.headers['accessToken'] = getAccessToken()
     }
@@ -70,7 +70,7 @@ export default {
    * 获取七牛token
    */
   getQiniuToken (withWater) {
-    return axios.get('a/qiniu/token', {
+    return axios.get('admin/qiniu/token', {
       params: {
         bucket: 'blogimg',
         withWater: withWater
@@ -92,79 +92,79 @@ export default {
    * 获取博客配置
    */
   getBlogConfig () {
-    return axios.get('a/webConfig')
+    return axios.get('admin/webConfig')
   },
   /**
    * 修改博客配置
    */
   modifyBlogConfig (params) {
-    return axios.post('a/webConfig/modify', Qs.stringify(params))
+    return axios.post('admin/webConfig/modify', Qs.stringify(params))
   },
   /**
    * 获取 关于我 页面
    */
   getAboutMe () {
-    return axios.get('a/webConfig/getAbout')
+    return axios.get('admin/webConfig/getAbout')
   },
   /**
    * 修改 关于我 页面
    */
   modifyAboutMe (params) {
-    return axios.post('a/webConfig/modifyAbout', Qs.stringify(params))
+    return axios.post('admin/webConfig/modifyAbout', Qs.stringify(params))
   },
   /**
    * 获取首页面板显示的统计信息
    */
   getHomeStatistics () {
-    return axios.get('a/statistics/home')
+    return axios.get('admin/statistics/home')
   },
   /**
    * 获取系统日志
    */
   getSysLog (params) {
-    return axios.get('a/sys/log', {params: params})
+    return axios.get('admin/sys/log', {params: params})
   },
   /**
    * 添加分类
    */
   addCategory (categoryName) {
-    return axios.post('a/category/add', Qs.stringify({categoryName: categoryName}))
+    return axios.post('admin/category/add', Qs.stringify({categoryName: categoryName}))
   },
   /**
    * 添加标签
    */
   addTag (tagName) {
-    return axios.post('a/tag/add', Qs.stringify({tagName: tagName}))
+    return axios.post('admin/tag/add', Qs.stringify({tagName: tagName}))
   },
   /**
    * 修改分类
    */
   modifyCategory (params) {
-    return axios.post('a/category/modify', Qs.stringify(params))
+    return axios.post('admin/category/modify', Qs.stringify(params))
   },
   /**
    * 修改标签
    */
   modifyTag (params) {
-    return axios.post('a/tag/modify', Qs.stringify(params))
+    return axios.post('admin/tag/modify', Qs.stringify(params))
   },
   /**
    * 删除分类
    */
   deleteCategory (categoryId) {
-    return axios.post('a/category/delete', Qs.stringify({categoryId: categoryId}))
+    return axios.post('admin/category/delete', Qs.stringify({categoryId: categoryId}))
   },
   /**
    * 删除标签
    */
   deleteTag (tagId) {
-    return axios.post('a/tag/delete', Qs.stringify({tagId: tagId}))
+    return axios.post('admin/tag/delete', Qs.stringify({tagId: tagId}))
   },
   /**
    * 获取分类列表
    */
   getCategoryList (params) {
-    return axios.get('a/category/list', {
+    return axios.get('admin/category/list', {
       params: params
     })
   },
@@ -172,7 +172,7 @@ export default {
    * 获取标签列表
    */
   getTagList (params) {
-    return axios.get('a/tag/list', {
+    return axios.get('admin/tag/list', {
       params: params
     })
   },
@@ -180,7 +180,7 @@ export default {
    * 获取分类
    */
   getCategory (categoryId) {
-    return axios.get('a/category', {
+    return axios.get('admin/category', {
       params: {
         categoryId: categoryId
       }
@@ -190,7 +190,7 @@ export default {
    * 获取标签
    */
   getTag (tagId) {
-    return axios.get('a/tag', {
+    return axios.get('admin/tag', {
       params: {
         tagId: tagId
       }
@@ -200,31 +200,31 @@ export default {
    * 保存文章
    */
   saveArticle (params) {
-    return axios.post('a/article/save', Qs.stringify(params))
+    return axios.post('admin/article/save', Qs.stringify(params))
   },
   /**
    * 发布文章
    */
   publishArticle (params) {
-    return axios.post('a/article/publish', Qs.stringify(params))
+    return axios.post('admin/article/publish', Qs.stringify(params))
   },
   /**
    * 编辑文章
    */
   modifyArticle (params) {
-    return axios.post('a/article/modify', Qs.stringify(params))
+    return axios.post('admin/article/modify', Qs.stringify(params))
   },
   /**
    * 删除文章
    */
   deleteArticle (articleId) {
-    return axios.post('a/article/delete', Qs.stringify({id: articleId}))
+    return axios.post('admin/article/delete', Qs.stringify({id: articleId}))
   },
   /**
    * 获取文章信息
    */
   getArticle (articleId) {
-    return axios.get('a/article/info', {
+    return axios.get('admin/article/info', {
       params: {
         id: articleId
       }
@@ -234,7 +234,7 @@ export default {
    * 获取文章列表
    */
   getArticleList (params) {
-    return axios.get('a/article/list', {
+    return axios.get('admin/article/list', {
       params: params
     })
   },
@@ -242,7 +242,7 @@ export default {
    * 获取友链列表
    */
   getFriendsList (params) {
-    return axios.get('a/friends/list', {
+    return axios.get('admin/friends/list', {
       params: params
     })
   },
@@ -250,31 +250,31 @@ export default {
    * 添加友链
    */
   addFriend (params) {
-    return axios.post('a/friends/add', Qs.stringify(params))
+    return axios.post('admin/friends/add', Qs.stringify(params))
   },
   /**
    * 编辑友链
    */
   modifyFriend (params) {
-    return axios.post('a/friends/modify', Qs.stringify(params))
+    return axios.post('admin/friends/modify', Qs.stringify(params))
   },
   /**
    * 删除友链
    */
   deleteFriend (friendId) {
-    return axios.post('a/friends/delete', Qs.stringify({friendId: friendId}))
+    return axios.post('admin/friends/delete', Qs.stringify({friendId: friendId}))
   },
   /**
    * 获取友链类型列表
    */
   getFriendTypeList () {
-    return axios.get('a/friends/typeList')
+    return axios.get('admin/friends/typeList')
   },
   /**
    * 获取所有评论列表
    */
   getAllCommentsList (params) {
-    return axios.get('a/comments/alllist', {
+    return axios.get('admin/comments/alllist', {
       params: params
     })
   },
@@ -282,7 +282,7 @@ export default {
    * 获取文章评论列表
    */
   getComments (articleId) {
-    return axios.get('a/comments/list', {
+    return axios.get('admin/comments/list', {
       params: {
         articleId: articleId
       }
@@ -292,25 +292,25 @@ export default {
    * 添加评论
    */
   adminReplyComments (params) {
-    return axios.post('a/comments/add', Qs.stringify(params))
+    return axios.post('admin/comments/add', Qs.stringify(params))
   },
   /**
    * 删除评论
    */
   deleteComments (id) {
-    return axios.post('a/comments/delete', Qs.stringify({commentsId: id}))
+    return axios.post('admin/comments/delete', Qs.stringify({commentsId: id}))
   },
   /**
    * 获取 我的简历 页面
    */
   getResume () {
-    return axios.get('a/webConfig/getResume')
+    return axios.get('admin/webConfig/getResume')
   },
   /**
    * 修改 我的简历 页面
    */
   modifyResume (params) {
-    return axios.post('a/webConfig/modifyResume', Qs.stringify(params))
+    return axios.post('admin/webConfig/modifyResume', Qs.stringify(params))
   },
   // ---------------------------------------------以下是博客页面使用的接口---------------------------------------------,
   /**

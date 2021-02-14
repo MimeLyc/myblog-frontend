@@ -166,8 +166,8 @@ export default {
     },
     getList() {
       this.getArticleList({
-          by: 'status',
-          status: 2,
+          by: 'STATUS',
+          status: 'DRAFT',
           page: this.page,
           pageSize: this.pageSize
         })
