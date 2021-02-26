@@ -92,13 +92,13 @@ export default {
    * 获取博客配置
    */
   getBlogConfig () {
-    return axios.get('admin/webConfig')
+    return axios.get('admin/config')
   },
   /**
    * 修改博客配置
    */
   modifyBlogConfig (params) {
-    return axios.post('admin/webConfig/modify', Qs.stringify(params))
+    return axios.post('admin/config', Qs.stringify(params))
   },
   /**
    * 获取 关于我 页面
@@ -116,7 +116,7 @@ export default {
    * 获取首页面板显示的统计信息
    */
   getHomeStatistics () {
-    return axios.get('admin/statistics/home')
+    return axios.get('admin/statistic')
   },
   /**
    * 获取系统日志

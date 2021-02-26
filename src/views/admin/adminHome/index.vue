@@ -112,11 +112,11 @@ export default {
   created() {
     this.getHomeStatistics()
       .then((data) => {
-        this.messageCards[0].middleMessage = data.publishCount
-        this.messageCards[1].middleMessage = data.draftsCount
-        this.messageCards[2].middleMessage = data.deletedCount
+        this.messageCards[0].middleMessage = data.publishArticleCount
+        this.messageCards[1].middleMessage = data.draftArticleCount
+        this.messageCards[2].middleMessage = data.deleteArticleCount
         this.messageCards[3].middleMessage = data.categoryCount + '/' + data.tagCount
-        this.messageCards[4].middleMessage = data.commentsCount
+        this.messageCards[4].middleMessage = data.commentCount
       })
       .catch(()=> {})
     this.getLog(0)

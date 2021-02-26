@@ -7,7 +7,7 @@
           <span @click="newCategory">新增分类</span>
         </div>
         <el-table
-          :data="catetoryList"
+          :data="categoryList"
           border
           stripe
           size="mini"
@@ -17,7 +17,7 @@
               show-overflow-tooltip
               min-width="120">
             <template slot-scope="scope">
-              <div class="title" @click="toList('catetory', scope.row.categoryId)">{{ scope.row.categoryName }}</div>
+              <div class="title" @click="toList('catetory', scope.row.id)">{{ scope.row.name }}</div>
             </template>
           </el-table-column>
           <el-table-column
@@ -38,12 +38,12 @@
               :formatter="formatTime">
           </el-table-column>
           <el-table-column
-              prop="status"
+              prop="isDeleted"
               label="状态"
               width="70">
               <template slot-scope="scope">
-                <el-tag :type="scope.row.status == '0' ? 'success' : 'danger'" size="mini">
-                  {{ formatStatus(scope.row.status) }}
+                <el-tag :type="scope.row.isDeleted == false ? 'success' : 'danger'" size="mini">
+                  {{ formatStatus(scope.row.isDeleted) }}
                 </el-tag>
               </template>
           </el-table-column>
@@ -57,7 +57,7 @@
                   icon="el-icon-edit"
                   type="primary"
                   circle
-                  v-if="scope.row.canDel === '1'"
+                  v-if="scope.row.canDelete === true"
                   @click="editCategory(scope.row)">
                 </el-button>
                 <el-button
@@ -65,7 +65,7 @@
                   type="danger"
                   icon="el-icon-delete"
                   circle
-                  v-if="scope.row.canDel === '1'"
+                  v-if="scope.row.canDelete === true"
                   @click="underCategory(scope.row)">
                 </el-button>
               </template>
@@ -108,12 +108,12 @@
               :formatter="formatTime">
           </el-table-column>
           <el-table-column
-              prop="status"
+              prop="isDeleted"
               label="状态"
               width="70">
               <template slot-scope="scope">
-                <el-tag :type="scope.row.status == '0' ? 'success' : 'danger'" size="mini">
-                  {{ formatStatus(scope.row.status) }}
+                <el-tag :type="scope.row.isDeleted == false ? 'success' : 'danger'" size="mini">
+                  {{ formatStatus(scope.row.isDeleted) }}
                 </el-tag>
               </template>
           </el-table-column>
@@ -158,7 +158,7 @@ export default {
   },
   data () {
     return {
-      catetoryList: [],
+      categoryList: [],
       tagList: []
     }
   },
@@ -181,7 +181,7 @@ export default {
       return cellValue ? moment(parseInt(cellValue) * 1000).format('YYYY-MM-DD HH:mm') : '-'
     },
     formatStatus(value) {
-      return value == '0' ? '使用中' : '已删除'
+      return value == false ? '使用中' : '已删除'
     },
     editTag(tag) {
       this.showDialogWithInput(tag.tagName, (value)=> {
@@ -316,10 +316,10 @@ export default {
     getCList() {
       this.getCategoryList({all: true})
         .then((data) => {
-          this.catetoryList = data.list
+          this.categoryList = data.list
         })
         .catch(()=> {
-          this.catetoryList = []
+          this.categoryList = []
         })
     },
     getTList() {

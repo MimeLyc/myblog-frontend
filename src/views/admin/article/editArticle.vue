@@ -89,9 +89,9 @@
               <el-option
                 v-for="item in categoryList"
                 size="mini"
-                :key="item.categoryId"
-                :label="item.categoryName"
-                :value="item.categoryName">
+                :key="item.id"
+                :label="item.name"
+                :value="item.name">
               </el-option>
             </el-select>
           </div>
@@ -250,9 +250,9 @@ export default {
       this.article.cover = url
     },
     getCategory() {
-      let category = this.categoryList.find(item => item.categoryName === this.category)
+      let category = this.categoryList.find(item => item.name === this.category)
       if (category) {
-        return {id: category.categoryId}
+        return {id: category.id}
       } else {
         return {name: this.category}
       }
